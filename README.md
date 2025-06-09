@@ -1,0 +1,2 @@
+# HINET
+Autologin
