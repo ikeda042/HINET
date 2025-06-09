@@ -22,7 +22,8 @@ async def main():
         await hinet()
         await asyncio.sleep(3600)
         await send_slack(
-            SlackMessage(
+            webhook_url=os.getenv("WEBHOOK_URL"),
+            payload=SlackMessage(
                 text="HINET login process completed.",
             )
         )
