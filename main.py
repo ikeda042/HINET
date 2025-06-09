@@ -11,7 +11,7 @@ MY_MAC_ADDRESS = os.getenv("MY_MAC_ADDRESS", "")
 async def check_internet_connection() -> bool | aiohttp.ClientResponse:
     try:
         async with aiohttp.ClientSession() as session:
-            async with session.get("http://www.msftconnecttest.com/connecttest.txt", timeout=5) as response:
+            async with session.get("https://www.msftconnecttest.com/connecttest.txt", timeout=5) as response:
                 return response.status == 200
     except:
         return False
