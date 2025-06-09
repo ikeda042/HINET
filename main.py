@@ -9,7 +9,8 @@ load_dotenv()
 async def check_internet_connection() -> bool | aiohttp.ClientResponse:
     try:
         async with aiohttp.ClientSession() as session:
-            async with session.get("https://www.google.com", timeout=5) as response:
+            async with session.get("http://www.msftconnecttest.com/connecttest.txt", timeout=5) as response:
+                print(f"Response status: {response.status}")
                 return response.status == 200
     except:
         return False
@@ -25,10 +26,8 @@ async def hinet():
 
 async def main():
     while True:
-        is_connected = await check_internet_connection()
         print("Checking internet connection...")
-        print(is_connected)
-        if is_connected:
+        if await check_internet_connection():
             print("Internet connection is available.")
         else:
             print("No internet connection. Retrying in 10 seconds...")
@@ -36,4 +35,9 @@ async def main():
         await asyncio.sleep(10)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # asyncio.run(main())
+    internet_connection = asyncio.run(check_internet_connection())
+    if internet_connection:
+        print("Internet connection is available.")
+    else:
+        print("No internet connection. Please check your connection.")
