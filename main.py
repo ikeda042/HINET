@@ -15,7 +15,7 @@ async def check_internet_connection() -> bool | aiohttp.ClientResponse:
         return False
     
 async def hinet():
-    mac_addresses = []
+    mac_addresses = ["a"]
     for mac_address in mac_addresses:
         try:
             await HINETLogin(mac_address=mac_address).main()
@@ -24,7 +24,7 @@ async def hinet():
 
 async def main():
     while True:
-        if await check_internet_connection():
+        if not await check_internet_connection():
             print("Internet connection is available.")
         else:
             print("No internet connection. Retrying in 10 seconds...")
@@ -32,9 +32,5 @@ async def main():
         await asyncio.sleep(10)
 
 if __name__ == "__main__":
-    # asyncio.run(main())
-    internet_connection = asyncio.run(check_internet_connection())
-    if internet_connection:
-        print("Internet connection is available.")
-    else:
-        print("No internet connection. Please check your connection.")
+    asyncio.run(main())
+   
