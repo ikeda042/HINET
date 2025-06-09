@@ -21,6 +21,11 @@ async def main():
     while True:
         await hinet()
         await asyncio.sleep(3600)
+        await send_slack(
+            SlackMessage(
+                text="HINET login process completed.",
+            )
+        )
 
 if __name__ == "__main__":
     asyncio.run(main())
