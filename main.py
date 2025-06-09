@@ -24,7 +24,7 @@ async def hinet():
 
 async def main():
     while True:
-        if not await check_internet_connection():
+        if await check_internet_connection():
             print("Internet connection is available.")
         else:
             print("No internet connection. Retrying in 10 seconds...")
