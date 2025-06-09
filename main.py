@@ -10,7 +10,7 @@ async def check_internet_connection() -> bool | aiohttp.ClientResponse:
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get("https://www.google.com", timeout=5) as response:
-                return True
+                return response.status == 200
     except:
         return False
     
@@ -26,12 +26,14 @@ async def hinet():
 async def main():
     while True:
         is_connected = await check_internet_connection()
+        print("Checking internet connection...")
+        print(is_connected)
         if is_connected:
             print("Internet connection is available.")
-            await hinet()
         else:
             print("No internet connection. Retrying in 10 seconds...")
-        await asyncio.sleep(60)
+            await hinet()
+        await asyncio.sleep(10)
 
 if __name__ == "__main__":
     asyncio.run(main())
