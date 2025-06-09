@@ -29,7 +29,7 @@ async def main():
         else:
             print("No internet connection. Retrying in 10 seconds...")
             await hinet()
-        await asyncio.sleep(10)
+        await asyncio.sleep(60)
 
 if __name__ == "__main__":
     asyncio.run(main())
