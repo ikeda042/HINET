@@ -1,22 +1,13 @@
 from HINET import HINETLogin
 from dotenv import load_dotenv
 import asyncio
-import aiohttp
 import os
 from slack import send_slack, SlackMessage
-import socket
 
 load_dotenv()
 MAC_ADDRESSES = os.getenv("MAC_ADDRESSES", "").split(",")
 MY_MAC_ADDRESS = os.getenv("MY_MAC_ADDRESS", "")
 
-def check_internet_connection(timeout: float = 3.0) -> bool:
-    try:
-        # create_connection は成功するとソケットを返す
-        socket.create_connection(("1.1.1.1", 443), timeout=timeout).close()
-        return True
-    except OSError:
-        return False
     
 async def hinet():
     mac_addresses = MAC_ADDRESSES + [MY_MAC_ADDRESS]
