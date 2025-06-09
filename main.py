@@ -22,3 +22,11 @@ async def main():
         except Exception as e:
             print(e)
             pass
+
+while True:
+    if asyncio.run(check_internet_connection()):
+        print("Internet connection is available.")
+        asyncio.run(main())
+    else:
+        print("No internet connection. Retrying in 10 seconds...")
+    asyncio.sleep(60)  
