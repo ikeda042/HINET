@@ -1,9 +1,19 @@
 from HINET import HINETLogin
 from dotenv import load_dotenv
 import asyncio
+import aiohttp
+
 
 load_dotenv()
 
+async def check_internet_connection() -> bool | aiohttp.ClientResponse:
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://www.google.com", timeout=5) as response:
+                return True
+    except:
+        return False
+    
 async def main():
     mac_addresses = []
     for mac_address in mac_addresses:
