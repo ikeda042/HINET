@@ -71,7 +71,3 @@ class HINETLogin:
         await self.close_driver()
 
 
-if __name__ == "__main__":
-    mac_address = ["00:11:22:33:44:55"] 
-    hinet = HINETLogin(mac_address)
-    asyncio.run(hinet.main())
