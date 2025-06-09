@@ -30,12 +30,12 @@ async def main():
     while True:
         if check_internet_connection():
             print("Internet connection is available.")
-            await send_slack(
-                webhook_url=os.getenv("WEBHOOK_URL"),
-                payload=SlackMessage(text="Internet connection is available. Starting HINET login process.")),
+            # await send_slack(
+            #     webhook_url=os.getenv("WEBHOOK_URL"),
+            #     payload=SlackMessage(text="Internet connection is available. Starting HINET login process.")),
         else:
             print("No internet connection. Retrying in 10 seconds...")
-            # await hinet()
+            await hinet()
         await asyncio.sleep(120)
 
 if __name__ == "__main__":
