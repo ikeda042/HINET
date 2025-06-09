@@ -2,10 +2,12 @@ from HINET import HINETLogin
 from dotenv import load_dotenv
 import asyncio
 import aiohttp
+import os
 
 
 load_dotenv()
-
+MAC_ADDRESSES = os.getenv("MAC_ADDRESSES", "").split(",")
+MY_MAC_ADDRESS = os.getenv("MY_MAC_ADDRESS", "")
 async def check_internet_connection() -> bool | aiohttp.ClientResponse:
     try:
         async with aiohttp.ClientSession() as session:
@@ -15,7 +17,7 @@ async def check_internet_connection() -> bool | aiohttp.ClientResponse:
         return False
     
 async def hinet():
-    mac_addresses = ["a"]
+    mac_addresses = MAC_ADDRESSES + [MY_MAC_ADDRESS]
     for mac_address in mac_addresses:
         try:
             await HINETLogin(mac_address=mac_address).main()
